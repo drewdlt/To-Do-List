@@ -1,15 +1,19 @@
+import ListItem from "./ListItem";
+
 function ToDoList({ list }) {
 
     return (
-        <ul>
+        <>
         {list.length === 0 ? (
-            <p>You're all caught up!</p>
+            <p className="text-2xl mt-5">You're all caught up!</p>
         ) : (
             list.map((item, index) => {
-                return <li key={index}>{item}</li>
+                return (
+                    <ListItem key={index} item={item} index={index}/>
+                )
             })
         )}
-        </ul>
+        </>
     );
 }
 

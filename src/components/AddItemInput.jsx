@@ -14,11 +14,13 @@ function AddItemInput({ list, setList }) {
 
     return (
         <input 
+            className="text-lg border py-1 px-2 rounded text-center mb-5"
             onKeyDown={handleKeyDown} 
             onChange={(event) => setCurrItem(event.target.value)} 
             value={currItem} 
             type="text" 
-            placeholder="Add a new item" />
+            placeholder="Add a new item" 
+        />
     );
 }
 
