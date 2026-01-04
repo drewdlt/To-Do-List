@@ -1,28 +1,15 @@
-import { useEffect, useState } from "react";
-
-function ToDoList() {
-    const [list, setList] = useState([]);
-    
-    const items = [
-        'Take out the trash',
-        'Walk the dog',
-        'Write some code'
-    ];
-
-    useEffect(() => {
-        setList([...items]);
-    }, [items])
+function ToDoList({ list }) {
 
     return (
-        <>
+        <ul>
         {list.length === 0 ? (
-            <p>No items in the list</p>
+            <p>You're all caught up!</p>
         ) : (
             list.map((item, index) => {
                 return <li key={index}>{item}</li>
             })
         )}
-        </>
+        </ul>
     );
 }
 
