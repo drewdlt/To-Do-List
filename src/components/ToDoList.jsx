@@ -1,6 +1,6 @@
 import ListItem from "./ListItem";
 
-function ToDoList({ list }) {
+function ToDoList({ list, handleDelete }) {
 
     return (
         <>
@@ -9,7 +9,7 @@ function ToDoList({ list }) {
         ) : (
             list.map((item, index) => {
                 return (
-                    <ListItem key={index} item={item} index={index}/>
+                    <ListItem key={index} item={item} index={index} handleDelete={handleDelete}/>
                 )
             })
         )}

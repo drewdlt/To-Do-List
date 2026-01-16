@@ -6,7 +6,6 @@ function AddItemInput({ list, setList }) {
     const handleKeyDown =(event) => {
         if (event.key === 'Enter' && event.target.value !== "") {
             setList((prevList) => [...prevList, currItem]);
-            console.log('List: ', list);
 
             setCurrItem('');
         }
