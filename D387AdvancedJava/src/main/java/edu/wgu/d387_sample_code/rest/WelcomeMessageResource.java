@@ -9,22 +9,19 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 @RestController
 @RequestMapping("/api/welcome")
 @CrossOrigin
 public class WelcomeMessageResource {
 
-    public static ExecutorService messageExecutor= Executors.newFixedThreadPool(3);
     Properties messageProperties = new Properties();
 
     @GetMapping
-    public ArrayList<String> getWelcomeMessages() {
+    public ArrayList<String> getWelcomeMessages() throws InterruptedException {
         ArrayList<String> result = new ArrayList<>();
 
-        messageExecutor.execute(() -> {
+        Thread t1 = new Thread(() -> {
             try {
                 String res;
                 InputStream stream = new ClassPathResource("welcome-en.properties").getInputStream();
@@ -36,7 +33,7 @@ public class WelcomeMessageResource {
             }
         });
 
-        messageExecutor.execute(() -> {
+        Thread t2 = new Thread(() -> {
             try {
                 String res;
                 InputStream stream = new ClassPathResource("welcome-fr.properties").getInputStream();
@@ -47,6 +44,13 @@ public class WelcomeMessageResource {
                 e.printStackTrace();
             }
         });
+
+        t1.start();
+        t2.start();
+
+        // Wait for both threads to complete before returning result
+        t1.join();
+        t2.join();
 
         return result;
     }
