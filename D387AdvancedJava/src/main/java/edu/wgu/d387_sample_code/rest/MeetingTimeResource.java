@@ -32,17 +32,14 @@ public class MeetingTimeResource {
 
         // Get Eastern Time
         ZonedDateTime zonedDateTimeEastern = zonedDateTime.withZoneSameInstant(etZone);
-//        System.out.println("Eastern time: " + zonedDateTimeEastern.format(formatter));
         meetingTimes.add(zonedDateTimeEastern.format(formatter));
 
         // Get Mountain Time
         ZonedDateTime zonedDateTimeMountain = zonedDateTime.withZoneSameInstant(mtZone);
-//        System.out.println("Mountain time: " + zonedDateTimeMountain.format(formatter));
         meetingTimes.add(zonedDateTimeMountain.format(formatter));
 
         // Get Universal Time
         ZonedDateTime zonedDateTimeUniversal = zonedDateTime.withZoneSameInstant(utcZone);
-//        System.out.println("Universal time: " + zonedDateTimeUniversal.format(formatter));
         meetingTimes.add(zonedDateTimeUniversal.format(formatter));
 
         // Return array of timestamps in string format
